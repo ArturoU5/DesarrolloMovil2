@@ -1,6 +1,7 @@
 package com.refreshpro.lavanderia.ui.pedidos
 
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -9,6 +10,7 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
+import com.refreshpro.lavanderia.data.repository.AuthRepository
 import com.refreshpro.lavanderia.data.repository.PedidoRepository
 import com.refreshpro.lavanderia.data.repository.ServiciosCatalogo
 import com.refreshpro.lavanderia.databinding.ActivityNuevoPedidoBinding
@@ -47,6 +49,15 @@ class NuevoPedidoActivity : BaseActivity() {
         binding.actServicio.setAdapter(
             ArrayAdapter(this, android.R.layout.simple_list_item_1, ServiciosCatalogo.nombres)
         )
+
+        // Control por rol: el CLIENTE pide a su nombre; el ADMIN puede pedir para cualquier cliente
+        if (AuthRepository.esAdmin()) {
+            binding.tilCorreoCliente.visibility = View.VISIBLE
+        } else {
+            binding.etNombre.setText(AuthRepository.usuarioActual?.nombre)
+            binding.etNombre.isEnabled = false
+        }
+        binding.etCorreoCliente.doAfterTextChanged { binding.tilCorreoCliente.error = null }
 
         // Si viene desde el detalle de un servicio, ya queda seleccionado
         intent.getStringExtra(Extras.SERVICIO_NOMBRE)?.let { binding.actServicio.setText(it, false) }
@@ -99,6 +110,11 @@ class NuevoPedidoActivity : BaseActivity() {
         val fecha = binding.etFecha.text.toString().trim()
         val cantidad = binding.etCantidad.text.toString().trim()
         val direccion = binding.etDireccion.text.toString().trim()
+        val correoCliente = if (AuthRepository.esAdmin()) {
+            binding.etCorreoCliente.text.toString().trim()
+        } else {
+            AuthRepository.usuarioActual?.correo ?: ""
+        }
 
         val errores = listOf(
             binding.tilNombre to Validaciones.nombre(nombre),
@@ -106,7 +122,9 @@ class NuevoPedidoActivity : BaseActivity() {
             binding.tilServicio to Validaciones.obligatorio(servicio, "Selecciona un servicio"),
             binding.tilFecha to Validaciones.obligatorio(fecha, "Selecciona la fecha"),
             binding.tilCantidad to Validaciones.cantidad(cantidad),
-            binding.tilDireccion to Validaciones.obligatorio(direccion, "Ingresa la dirección")
+            binding.tilDireccion to Validaciones.obligatorio(direccion, "Ingresa la dirección"),
+            binding.tilCorreoCliente to
+                if (AuthRepository.esAdmin() && correoCliente.isNotBlank()) Validaciones.correo(correoCliente) else null
         )
         errores.forEach { (campo, error) -> campo.error = error }
         val hayErrores = errores.any { it.second != null }
@@ -119,7 +137,7 @@ class NuevoPedidoActivity : BaseActivity() {
         }
         if (hayErrores) return
 
-        PedidoRepository.agregar(nombre, telefono, servicio, fecha, cantidad.toInt(), direccion, lat, lng)
+        PedidoRepository.agregar(nombre, telefono, servicio, fecha, cantidad.toInt(), direccion, lat, lng, correoCliente)
         Toast.makeText(this, "Pedido registrado", Toast.LENGTH_SHORT).show()
         finish()
     }

@@ -72,7 +72,7 @@ class MapaActivity : BaseActivity(), OnMapReadyCallback {
     }
 
     private fun dibujarPedidos(googleMap: GoogleMap) {
-        val lista = pedido?.let { listOf(it) } ?: PedidoRepository.obtenerTodos()
+        val lista = pedido?.let { listOf(it) } ?: PedidoRepository.obtenerVisibles()
         if (lista.isEmpty()) {
             binding.tvInfo.text = "No hay pedidos para mostrar"
             return

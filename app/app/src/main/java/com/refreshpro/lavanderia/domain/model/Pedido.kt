@@ -10,5 +10,7 @@ data class Pedido(
     val estadoPedido: EstadoPedido,
     val puntoRecojo: String,
     val latitud: Double,
-    val longitud: Double
+    val longitud: Double,
+    /** Correo de la cuenta dueña del pedido (vacío si es un pedido de mostrador). */
+    val clienteCorreo: String = ""
 )

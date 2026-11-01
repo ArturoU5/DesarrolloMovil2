@@ -28,9 +28,7 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.login.RegistroActivity" />
         <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.servicios.ServiciosActivity" />
         <activity android:name=".ui.servicios.ServicioDetalleActivity" />
-        <activity android:name=".ui.pedidos.PedidosActivity" />
         <activity android:name=".ui.pedidos.NuevoPedidoActivity" />
         <activity android:name=".ui.detalle.DetalleActivity" />
         <activity android:name=".ui.mapa.MapaActivity" />

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_inicio" android:icon="@drawable/ic_home" android:title="Inicio" />
+        <item android:id="@+id/nav_admin" android:icon="@drawable/ic_dashboard" android:title="Panel de administración" android:visible="false" />
+        <item android:id="@+id/nav_pedidos" android:icon="@drawable/ic_list" android:title="Mis pedidos" />
+        <item android:id="@+id/nav_servicios" android:icon="@drawable/ic_laundry" android:title="Servicios" />
+        <item android:id="@+id/nav_contactos" android:icon="@drawable/ic_phone" android:title="Contáctanos" />
+        <item android:id="@+id/nav_nosotros" android:icon="@drawable/ic_info" android:title="Nosotros" />
+    </group>
+    <group android:checkableBehavior="none">
+        <item android:id="@+id/nav_mapa" android:icon="@drawable/ic_location" android:title="Mapa de recojos" />
+        <item android:id="@+id/nav_logout" android:icon="@drawable/ic_logout" android:title="Cerrar sesión" />
+    </group>
+</menu>

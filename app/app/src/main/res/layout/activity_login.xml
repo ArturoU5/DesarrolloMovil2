@@ -84,7 +84,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Demo: admin@refreshpro.com / 123456"
+            android:gravity="center"
+            android:text="Administrador: admin@refreshpro.com\nCliente: cliente@refreshpro.com\nContraseña de ambos: 123456"
             android:textColor="@color/text_secondary"
             android:textSize="12sp" />
     </LinearLayout>

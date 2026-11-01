@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.refreshpro.lavanderia.data.repository.AuthRepository
 import com.refreshpro.lavanderia.data.repository.PedidoRepository
 import com.refreshpro.lavanderia.databinding.ActivityDetalleBinding
 import com.refreshpro.lavanderia.ui.BaseActivity
@@ -62,7 +63,7 @@ class DetalleActivity : BaseActivity() {
             tvCoordenadas.text = String.format(Locale.US, "%.5f, %.5f", pedido.latitud, pedido.longitud)
 
             val siguiente = pedido.estadoPedido.siguiente()
-            if (siguiente == null) {
+            if (siguiente == null || !AuthRepository.esAdmin()) {
                 btnAvanzar.visibility = View.GONE
             } else {
                 btnAvanzar.visibility = View.VISIBLE
