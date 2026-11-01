@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="RefreshPro Clean"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RefreshPro">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.login.RegistroActivity" />
+        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.servicios.ServiciosActivity" />
+        <activity android:name=".ui.servicios.ServicioDetalleActivity" />
+        <activity android:name=".ui.pedidos.PedidosActivity" />
+        <activity android:name=".ui.pedidos.NuevoPedidoActivity" />
+        <activity android:name=".ui.detalle.DetalleActivity" />
+        <activity android:name=".ui.mapa.MapaActivity" />
+    </application>
+</manifest>
