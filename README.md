@@ -8,9 +8,9 @@ Curso: Desarrollo de Aplicaciones Móviles 2 – IDAT (Evaluación parcial)
 ## Integrantes
 | Integrante | Rol / aporte |
 |---|---|
-| Integrante 1 | (completar) |
-| Integrante 2 | (completar) |
-| Integrante 3 | (completar) |
+| Guillermo Arturo Ugaz Montesinos |
+| ⁠Omar Alexander Córdova Pintado   |
+| ⁠Angello Andre Ramírez Del Aguila |
 
 ## Funcionalidades
 - Splash, Login, **registro de clientes** (con validaciones visuales) y Home con resumen de pedidos.
